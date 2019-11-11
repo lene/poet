@@ -11,12 +11,13 @@ from .bipedal_walker_custom import BipedalWalkerCustom, Env_config  # noqa
 def make_env(env_name, seed, render_mode=False, env_config=None):
     if env_name.startswith("BipedalWalkerCustom"):
         assert env_config is not None
-        env = BipedalWalkerCustom(env_config)
+        env = BipedalWalkerCustom(env_config, render_mode)
     else:
         # env = gym.make(env_name)
         raise Exception('Got env_name {}'.format(env_name))
     if render_mode and not env_name.startswith("Roboschool"):
-        env.render("human")
+        # env.render("human")
+        pass
     if (seed >= 0):
         env.seed(seed)
 

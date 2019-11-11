@@ -30,7 +30,7 @@ DEFAULT_ENV = Env_config(
         stair_steps=[])
 
 class Box2DNiche(Niche):
-    def __init__(self, env_configs, seed, init='random', stochastic=False):
+    def __init__(self, env_configs, seed, init='random', stochastic=False, render=False):
         self.model = Model(bipedhard_custom)
         if not isinstance(env_configs, list):
             env_configs = [env_configs]
@@ -39,7 +39,7 @@ class Box2DNiche(Niche):
             self.env_configs[env.name] = env
         self.seed = seed
         self.stochastic = stochastic
-        self.model.make_env(seed=seed, env_config=DEFAULT_ENV)
+        self.model.make_env(seed=seed, env_config=DEFAULT_ENV, render_mode=render)
         self.init = init
 
     def add_env(self, env):
@@ -71,7 +71,8 @@ class Box2DNiche(Niche):
             seed = self.seed
         for env_config in self.env_configs.values():
             returns, lengths = simulate(
-                self.model, seed=seed, train_mode=not eval, num_episode=1, env_config_this_sim=env_config)
+                self.model, seed=seed, train_mode=not eval, num_episode=1,
+                env_config_this_sim=env_config, render_mode=self.model.render_mode)
             total_returns += returns[0]
             total_length += lengths[0]
         return total_returns / len(self.env_configs), total_length
