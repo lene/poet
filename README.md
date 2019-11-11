@@ -11,6 +11,18 @@ An article on Uber Engineering Blog describing POET can be found [here](https://
 - [ipyparallel](https://github.com/ipython/ipyparallel)
 - [OpenAI Gym](https://github.com/openai/gym)
 
+If after `pip install ipyparallel gym` running the script fails with an error message: 
+```
+ModuleNotFoundError: No module named 'Box2D'
+```
+try to install Box2D manually:
+```
+$ git clone https://github.com/pybox2d/pybox2d pybox2d_dev
+$ cd pybox2d_dev
+$ python setup.py build
+$ python setup.py install
+```
+
 ## Run the code locally
 To run locally on a multicore machine
 
