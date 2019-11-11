@@ -51,6 +51,7 @@ parser.add_argument('--returns_normalization', default='normal')
 parser.add_argument('--stochastic', action='store_true', default=False)
 parser.add_argument('--envs', nargs='+')
 parser.add_argument('--start_from', default=None)  # Json file to start from
+parser.add_argument('--render', action='store_true', default=False)
 
 args = parser.parse_args()
 logger.info(args)

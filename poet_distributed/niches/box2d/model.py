@@ -196,7 +196,8 @@ def simulate(model, seed, train_mode=False, render_mode=False, num_episode=5,
         total_reward = 0.0
         for t in range(max_episode_length):
 
-            if render_mode:
+            if render_mode and t % 100 == 0:
+                logger.info("{}/{}\r".format(t, max_episode_length))
                 model.env.render("human")
                 if RENDER_DELAY:
                     time.sleep(0.01)

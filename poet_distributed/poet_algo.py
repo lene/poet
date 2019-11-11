@@ -30,9 +30,10 @@ def construct_niche_fns_from_env(args, env, seed):
         def make_niche():
             from poet_distributed.niches import Box2DNiche
             return Box2DNiche(env_configs=configs,
-                            seed=seed,
-                            init=args.init,
-                            stochastic=args.stochastic)
+                              seed=seed,
+                              init=args.init,
+                              stochastic=args.stochastic,
+                              render=args.render)
 
         return make_niche
 
